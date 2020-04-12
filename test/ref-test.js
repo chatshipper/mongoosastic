@@ -3,8 +3,8 @@
 const mongoose = require('mongoose')
 const should = require('should')
 const async = require('async')
-const elasticsearch = require('elasticsearch')
-const esClient = new elasticsearch.Client()
+const elasticsearch = require('@elastic/elasticsearch')
+const esClient = new elasticsearch.Client({ node: 'http://localhost:9200' })
 const config = require('./config')
 const Schema = mongoose.Schema
 const mongoosastic = require('../lib/mongoosastic')

@@ -2,7 +2,7 @@
 
 const mongoose = require('mongoose')
 const async = require('async')
-const elasticsearch = require('elasticsearch')
+const elasticsearch = require('@elastic/elasticsearch')
 const config = require('./config')
 const Schema = mongoose.Schema
 const mongoosastic = require('../lib/mongoosastic')
@@ -98,7 +98,7 @@ describe('Elasticsearch Connection', function () {
 
   it('should be able to connect with an existing elasticsearch client', function (done) {
     const esClient = new elasticsearch.Client({
-      host: 'localhost:9200'
+      node: 'http://localhost:9200'
     })
 
     esClient.ping({

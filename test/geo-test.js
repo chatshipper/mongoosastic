@@ -1,8 +1,8 @@
 'use strict'
 
 const mongoose = require('mongoose')
-const elasticsearch = require('elasticsearch')
-const esClient = new elasticsearch.Client()
+const { Client } = require('@elastic/elasticsearch')
+const esClient = new Client({ node: 'http://localhost:9200' })
 const config = require('./config')
 const Schema = mongoose.Schema
 const mongoosastic = require('../lib/mongoosastic')

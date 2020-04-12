@@ -1,8 +1,8 @@
 'use strict'
 
-const elasticsearch = require('elasticsearch')
-const esClient = new elasticsearch.Client({
-  host: 'localhost:9200',
+const { Client } = require('@elastic/elasticsearch')
+const esClient = new Client({
+  node: 'http://localhost:9200',
   deadTimeout: 0,
   keepAlive: false
 })

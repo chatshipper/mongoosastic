@@ -1,10 +1,11 @@
 'use strict'
 
 const mongoose = require('mongoose')
-const elasticsearch = require('elasticsearch')
-const esClient = new elasticsearch.Client({
-  deadTimeout: 0,
-  keepAlive: false
+const { Client } = require('@elastic/elasticsearch')
+const esClient = new Client({
+    node : 'http://localhost:9200',
+    deadTimeout: 0,
+    keepAlive: false
 })
 const config = require('./config')
 const Schema = mongoose.Schema

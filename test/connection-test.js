@@ -86,8 +86,8 @@ describe('Elasticsearch Connection', function () {
   it('should be able to connect with an array of hosts', function (done) {
     DummySchema.plugin(mongoosastic, {
       hosts: [
-        'localhost:9200',
-        'localhost:9200'
+        'http://localhost:9200',
+        'http://localhost:9200'
       ]
     })
 
@@ -98,16 +98,15 @@ describe('Elasticsearch Connection', function () {
 
   it('should be able to connect with an existing elasticsearch client', function (done) {
     const esClient = new elasticsearch.Client({
-      node: 'http://localhost:9200'
+        node: 'http://localhost:9200',
+        requestTimeout: 1000
+
     })
 
-    esClient.ping({
-      requestTimeout: 1000
-    }, function (err) {
+    esClient.ping({}, function (err) {
       if (err) {
         return done(err)
       }
-
       DummySchema.plugin(mongoosastic, {
         esClient: esClient
       })

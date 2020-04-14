@@ -165,7 +165,7 @@ describe('indexing', function () {
           index: 'tweets',
           id: doc._id.toString()
         }, function (_err, res) {
-          res._source.message.should.eql(doc.message)
+          res.body._source.message.should.eql(doc.message)
           done()
         })
       })

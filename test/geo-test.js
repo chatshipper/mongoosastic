@@ -37,7 +37,8 @@ describe('GeoTest', function () {
           GeoModel.deleteMany(function () {
             esClient.indices.getMapping({
               index: 'geodocs'
-            }, function (err, mapping) {
+            }, function (err, res) {
+                const mapping = res.body;
               (mapping.geodoc !== undefined
                 ? mapping.geodoc /* ES 0.9.11 */
                 : mapping.geodocs.mappings

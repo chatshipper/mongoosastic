@@ -12,11 +12,11 @@ const INDEXING_TIMEOUT = process.env.INDEXING_TIMEOUT || 2000
 const BULK_ACTION_TIMEOUT = process.env.BULK_ACTION_TIMEOUT || 4000
 
 function deleteIndexIfExists (indexes, done) {
-  async.forEach(indexes, function (index, cb) {
+    async.forEach(indexes, function (index, cb) {
     esClient.indices.exists({
       index: index
     }, function (err, exists) {
-      if (exists) {
+      if (exists && exists.statusCode != 404) {
         esClient.indices.delete({
           index: index
         }, cb)
@@ -52,7 +52,7 @@ function createModelAndSave (Model, obj, cb) {
 }
 
 function saveAndWaitIndex (model, cb) {
-  model.save(function (err) {
+    model.save(function (err) {
     if (err) cb(err)
     else {
       model.once('es-indexed', cb)
